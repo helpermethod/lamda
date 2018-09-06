@@ -1,0 +1,8 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: helpermethod/docker-luarocks:0.2.0
+    steps:    
+      - checkout
+      - run: luarocks test -- --coverage
