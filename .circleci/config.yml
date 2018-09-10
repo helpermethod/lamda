@@ -23,7 +23,7 @@ workflows:
   ci:
     jobs:
     - provision
-    - lint
+    - lint:
         requires:
           - provision
     - test:
