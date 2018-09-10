@@ -23,8 +23,8 @@ workflows:
     jobs:
     - provision
     - lint
-      requires:
-      - provision
+        requires:
+          - provision
     - test:
-      requires:
-      - lint
+        requires:
+          - lint
