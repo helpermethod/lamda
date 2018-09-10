@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    image: helpermethod/docker-luarocks:0.2.0
+    - image: helpermethod/docker-luarocks:0.2.0
 
 version: 2
 jobs:
