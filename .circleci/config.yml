@@ -1,8 +1,30 @@
+defaults: &defaults
+  docker:
+    image: helpermethod/docker-luarocks:0.2.0
+
 version: 2
 jobs:
-  build:
-    docker:
-      - image: helpermethod/docker-luarocks:0.2.0
-    steps:    
-      - checkout
-      - run: luarocks test -- --coverage
+  provision:
+    <<: *defaults
+    steps:
+      run: luarocks make --only-deps
+  lint:
+    <<: *defaults
+    steps:
+      run: luacheck
+  test:
+    <<: *defaults
+    steps:
+      run: luarocks make --only-deps
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+    - provision
+    - lint
+      requires:
+      - provision
+    - test:
+      requires:
+      - lint
