@@ -7,15 +7,16 @@ jobs:
   provision:
     <<: *defaults
     steps:
-      run: luarocks make --only-deps
+      - checkout
+      - run: luarocks make --only-deps
   lint:
     <<: *defaults
     steps:
-      run: luacheck
+      - run: luacheck
   test:
     <<: *defaults
     steps:
-      run: luarocks make --only-deps
+      - run: luarocks make --only-deps
 
 workflows:
   version: 2
