@@ -18,7 +18,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/lua
-      - run: luarocks test -- --coverage
+      - run: luarocks test --local -- --coverage
 
 workflows:
   version: 2
