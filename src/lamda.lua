@@ -1,8 +1,12 @@
 local lamda = {}
 
-function lamda.join(separator, tbl)
-  return table.concat(tbl, separator)
+function lamda.flip(fn)
+  return function(a, b, ...)
+    return fn(b, a, ...)
+  end
 end
+
+lamda.join = lamda.flip(table.concat)
 
 function lamda.concat(tbl1, tbl2)
   local copy = {table.unpack(tbl1)}

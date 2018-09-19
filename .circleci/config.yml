@@ -24,7 +24,7 @@ workflows:
   version: 2
   ci:
     jobs:
-    - checkout
-    - test:
-        requires:
-          - setup
+      - checkout
+      - test:
+          requires:
+            - checkout
