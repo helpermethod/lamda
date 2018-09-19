@@ -8,20 +8,16 @@ jobs:
   checkout:
     <<: *defaults
     steps:
-      - run: pwd
-      - run: ls
-      - checkout
-        # - run: git clone --depth=1 https://github.com/helpermethod/lamda
-      - run: ls
+      - run: git clone --depth=1 https://github.com/helpermethod/lamda .
       - persist_to_workspace:
-          root: .
+          root: /home/lua
           paths:
             - build
   test:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: .
+          at: /home/lua
       - run: luarocks test -- --coverage
 
 workflows:
