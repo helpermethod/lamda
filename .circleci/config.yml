@@ -1,31 +1,30 @@
 defaults: &defaults
   docker:
-    - image: helpermethod/docker-luarocks:0.2.0
+    - image: helpermethod/docker-luarocks:0.3.0
+  working_directory: ~/build
 
 version: 2
 jobs:
-  provision:
+  checkout:
     <<: *defaults
     steps:
-      - checkout
-      - run: luarocks make --only-deps
-  lint:
-    <<: *defaults
-    steps:
-      - run: luacheck
+      - run: git clone --depth=1 $CIRCLE_REPOSITORY_URL
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build
   test:
     <<: *defaults
     steps:
-      - run: luarocks make --only-deps
+      - attach_workspace:
+          at: .
+      - run: luarocks test -- --coverage
 
 workflows:
   version: 2
   ci:
     jobs:
-    - provision
-    - lint:
-        requires:
-          - provision
+    - checkout
     - test:
         requires:
-          - lint
+          - setup

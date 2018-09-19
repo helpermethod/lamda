@@ -11,7 +11,8 @@ dependencies = {
   'lua >= 5.1'
 }
 test_dependencies = {
-  'busted = 2.0.rc12-1'
+  'busted = 2.0.rc12-1',
+  'luacov = 0.13.0-1'
 }
 test = {
   type = 'busted'
