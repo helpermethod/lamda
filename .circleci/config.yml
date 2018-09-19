@@ -1,7 +1,7 @@
 defaults: &defaults
   docker:
     - image: helpermethod/docker-luarocks:0.3.0
-  working_directory: ~
+  working_directory: ~/
 
 version: 2
 jobs:
