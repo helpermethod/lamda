@@ -8,7 +8,7 @@ jobs:
   checkout:
     <<: *defaults
     steps:
-      - run: git clone --depth=1 $CIRCLE_REPOSITORY_URL
+      - run: git clone --depth=1 https://github.com/helpermethod/lamda
       - persist_to_workspace:
           root: .
           paths:
