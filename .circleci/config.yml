@@ -8,7 +8,10 @@ jobs:
   checkout:
     <<: *defaults
     steps:
+      - run: pwd
+      - run: ls
       - run: git clone --depth=1 https://github.com/helpermethod/lamda
+      - run: ls
       - persist_to_workspace:
           root: .
           paths:
