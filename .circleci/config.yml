@@ -1,18 +1,18 @@
 defaults: &defaults
   docker:
     - image: helpermethod/docker-luarocks:0.3.0
-  working_directory: ~/build
+  working_directory: ~
 
 version: 2
 jobs:
   checkout:
     <<: *defaults
     steps:
-      - run: git clone --depth=1 https://github.com/helpermethod/lamda .
+      - run: git clone --depth=1 https://github.com/helpermethod/lamda
       - persist_to_workspace:
-          root: /home/lua
+          root: ~
           paths:
-            - build
+            - lamda
   test:
     <<: *defaults
     steps:
