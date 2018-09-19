@@ -10,7 +10,7 @@ jobs:
     steps:
       - run: git clone --depth=1 https://github.com/helpermethod/lamda
       - persist_to_workspace:
-          root: ~
+          root: /home/lua
           paths:
             - lamda
   test:
