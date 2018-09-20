@@ -12,7 +12,8 @@ describe('lamda', function()
   end)
 
   describe('concat', function()
-    it('should return a new table consisting of the elements of the first table followed by the elements of the second table', function()
+    it('should return a new table consisting of the elements of the first table ' ..
+      'followed by the elements of the second table', function()
       assert.is_same({1, 2, 3}, lamda.concat({1, 2}, {3}))
     end)
   end)
@@ -30,7 +31,8 @@ describe('lamda', function()
   end)
 
   describe('any_pass', function()
-    it('should return a new predicate that returns true for a given argument if at least one of the provided predicates is satisfied by the argument', function()
+    it('should return a new predicate that returns true for a given argument ' ..
+      'if at least one of the provided predicates is satisfied by the argument', function()
       local function is_string(x) return type(x) == 'string' end
       local function is_number(x) return type(x) == 'number' end
 
