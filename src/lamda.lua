@@ -34,6 +34,14 @@ function lamda.partial(fn, ...)
   end
 end
 
+function lambda.partialRight(fn, ...)
+  local arguments = {...}
+
+  return function(...)
+    return fn(table.unpack(lamda.concat({...}, arguments)))
+  end
+end
+
 function lamda.any_pass(predicate, ...)
   local rest = {...}
 
