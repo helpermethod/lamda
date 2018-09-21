@@ -27,6 +27,10 @@ jobs:
           key: luarocks-{{ checksum "lamda-dev-1.rockspec" }}
           paths:
             - /home/lua/.luarocks
+  lint:
+    <<: *defaults
+    steps:
+      - run: ~/.luarocks/bin/luacheck
   test:
     <<: *defaults
     steps:
@@ -42,6 +46,9 @@ workflows:
       - install:
           requires:
             - checkout
-      - test:
+      - lint:
           requires:
             - install
+      - test:
+          requires:
+            - lint

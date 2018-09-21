@@ -8,7 +8,8 @@ description = {
    license = 'MIT'
 }
 dependencies = {
-  'lua >= 5.1'
+  'lua >= 5.1, < 5.4',
+  'luacheck 0.23.0-1'
 }
 test_dependencies = {
   'busted = 2.0.rc12-1',
