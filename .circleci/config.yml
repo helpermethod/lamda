@@ -54,13 +54,33 @@ workflows:
   version: 2
   ci:
     jobs:
-      - checkout
+      - checkout:
+          filters:
+            tags:
+              only: /(?:\d+.){2}\d/
       - install:
           requires:
             - checkout
+          filters:
+            tags:
+              only: /(?:\d+.){2}\d/
       - lint:
           requires:
             - install
+          filters:
+            tags:
+              only: /(?:\d+.){2}\d/
       - test:
           requires:
             - lint
+          filters:
+            tags:
+              only: /(?:\d+.){2}\d/
+      - release:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /(?:\d+.){2}\d/
+            branches:
+              ignore: /.*/
