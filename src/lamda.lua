@@ -34,7 +34,7 @@ function lamda.partial(fn, ...)
   end
 end
 
-function lambda.partialRight(fn, ...)
+function lamda.partial_right(fn, ...)
   local arguments = {...}
 
   return function(...)

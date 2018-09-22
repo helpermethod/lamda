@@ -30,6 +30,12 @@ describe('lamda', function()
     end)
   end)
 
+  describe('partial_right', function()
+    it('TODO', function()
+      assert.is_equal(5, lamda.partial(add, 3)(2))
+    end)
+  end)
+
   describe('any_pass', function()
     it('should return a new predicate that returns true for a given argument ' ..
       'if at least one of the provided predicates is satisfied by the argument', function()
