@@ -8,8 +8,11 @@ description = {
    license = 'MIT'
 }
 dependencies = {
-  'lua >= 5.1, < 5.4',
+  'lua >= 5.1, < 5.4'
+}
+build_dependencies = {
   'luacheck 0.23.0-1'
+  'dkjson 2.5-2'
 }
 test_dependencies = {
   'busted = 2.0.rc12-1',
