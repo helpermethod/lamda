@@ -42,16 +42,16 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/lua
-      - restore_cache:
-          keys: 
-            - v1-luarocks-{{ checksum "lamda-dev-1.rockspec" }}
-            - v1-luarocks-
-      - run: luarocks test --local -- --coverage
+     - run: luarocks test --local -- --coverage
   release:
     <<: *defaults
     steps:
       - attach_workspace:
           at: /home/lua
+      - restore_cache:
+          keys: 
+            - v1-luarocks-{{ checksum "lamda-dev-1.rockspec" }}
+            - v1-luarocks-
       - run: luarocks new_version --tag $CIRCLE_TAG
       - run: luarocks upload lamda-$CIRCLE_TAG-1.rockspec --api-key=$LUAROCKS_API_KEY
 workflows:
