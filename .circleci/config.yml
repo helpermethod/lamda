@@ -42,7 +42,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/lua
-     - run: luarocks test --local -- --coverage
+      - run: luarocks test --local -- --coverage
   release:
     <<: *defaults
     steps:
@@ -54,6 +54,7 @@ jobs:
             - v1-luarocks-
       - run: luarocks new_version --tag $CIRCLE_TAG
       - run: luarocks upload lamda-$CIRCLE_TAG-1.rockspec --api-key=$LUAROCKS_API_KEY
+
 workflows:
   version: 2
   ci:
