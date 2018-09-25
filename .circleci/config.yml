@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: helpermethod/docker-luarocks:0.3.0
+    - image: helpermethod/docker-luarocks:0.4.0
   working_directory: ~/build
 
 version: 2
