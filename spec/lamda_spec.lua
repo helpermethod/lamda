@@ -5,6 +5,16 @@ describe('lamda', function()
     return a + b
   end
 
+  describe('flip', function()
+    local function div(a, b)
+      return a / b
+    end
+
+    it('should flip the first two arguments of a function', function()
+      assert.is_equal(div(2, 1), lamda.flip(div)(1, 2))
+    end)
+  end)
+
   describe('join', function()
     it('should concatenate all elements into a single string', function()
       assert.is_equal('1, 2, 3', lamda.join(', ', {1, 2, 3}))
