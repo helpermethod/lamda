@@ -3,8 +3,6 @@
 
 A functional programming library for Lua.
 
-## Motivation
-
 ## Setup
 
 ```sh
