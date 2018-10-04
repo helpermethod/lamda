@@ -61,13 +61,13 @@ workflows:
               only: /(?:\d+.){2}\d/
       - lint:
           requires:
-            - install
+            - test
           filters:
             tags:
               only: /(?:\d+.){2}\d/
       - release:
           requires:
-            - test
+            - lint
           filters:
             tags:
               only: /(?:\d+.){2}\d/
