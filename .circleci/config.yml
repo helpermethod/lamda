@@ -55,7 +55,7 @@ workflows:
               only: /(?:\d+.){2}\d/
       - test:
           requires:
-            - lint
+            - checkout
           filters:
             tags:
               only: /(?:\d+.){2}\d/
