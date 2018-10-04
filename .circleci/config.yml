@@ -24,9 +24,9 @@ jobs:
             - v1-luarocks-test-dependencies
       - run: luarocks test --local -- --coverage
       - persist_to_workspace:
-          root: /home/lua/build
+          root: /home/lua
           paths:
-            - luacov.stats.out
+            - build
       - save_cache:
           key: v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
           paths:
