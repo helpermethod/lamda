@@ -3,7 +3,7 @@
 
 A functional programming library for Lua, inspired by [Ramda](https://ramdajs.com/).
 
-## Setup
+## Install
 
 ```sh
 $ luarocks install lamda
