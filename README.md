@@ -16,3 +16,11 @@ local lamda = require('lamda')
 ```
 
 ## API
+
+flip(fn)
+concat(tbl1, tbl2)
+pipe(fn, ...)
+partial(fn, ...)
+partial_right(fn, ...)
+any_pass(predicate, ...)
+sort(comparator, tbl)              

@@ -13,18 +13,18 @@ jobs:
           root: /home/lua
           paths:
             - build
-  install:
+  test:
     <<: *defaults
     steps:
       - attach_workspace:
           at: /home/lua
       - restore_cache:
           keys: 
-            - v1-luarocks-{{ checksum "lamda-dev-1.rockspec" }}
-            - v1-luarocks-
-      - run: luarocks make --local --only-deps
+            - v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
+            - v1-luarocks-test-dependencies
+      - run: luarocks test --local -- --coverage
       - save_cache:
-          key: v1-luarocks-{{ checksum "lamda-dev-1.rockspec" }}
+          key: v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
           paths:
             - /home/lua/.luarocks
   lint:
@@ -34,24 +34,14 @@ jobs:
           at: /home/lua
       - restore_cache:
           keys:
-            - v1-luarocks-{{ checksum "lamda-dev-1.rockspec" }}
-            - v1-luarocks-
+            - v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
+            - v1-luarocks-test-dependencies
       - run: ~/.luarocks/bin/luacheck src/ spec/
-  test:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: /home/lua
-      - run: luarocks test --local -- --coverage
   release:
     <<: *defaults
     steps:
       - attach_workspace:
           at: /home/lua
-      - restore_cache:
-          keys: 
-            - v1-luarocks-{{ checksum "lamda-dev-1.rockspec" }}
-            - v1-luarocks-
       - run: luarocks new_version --tag $CIRCLE_TAG
       - run: luarocks upload lamda-$CIRCLE_TAG-1.rockspec --api-key=$LUAROCKS_API_KEY
 
@@ -63,9 +53,9 @@ workflows:
           filters:
             tags:
               only: /(?:\d+.){2}\d/
-      - install:
+      - test:
           requires:
-            - checkout
+            - lint
           filters:
             tags:
               only: /(?:\d+.){2}\d/
@@ -75,13 +65,7 @@ workflows:
           filters:
             tags:
               only: /(?:\d+.){2}\d/
-      - test:
-          requires:
-            - lint
-          filters:
-            tags:
-              only: /(?:\d+.){2}\d/
-      - release:
+     - release:
           requires:
             - test
           filters:

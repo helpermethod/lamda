@@ -14,6 +14,7 @@ dependencies = {
 test_dependencies = {
   'busted = 2.0.rc12-1',
   'luacov = 0.13.0-1',
+  'luacov-coveralls = 0.2.2-1'
   'luacheck = 0.23.0-1'
 }
 test = {
