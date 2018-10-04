@@ -23,10 +23,24 @@ jobs:
             - v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
             - v1-luarocks-test-dependencies
       - run: luarocks test --local -- --coverage
+      - persist_to_workspace:
+          root: /home/lua/build
+          paths:
+            - luacov.stats.out
       - save_cache:
           key: v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
           paths:
             - /home/lua/.luarocks
+  report:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /home/lua
+      - restore_cache:
+          keys:
+            - v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
+            - v1-luarocks-test-dependencies
+      - run: ~/.luarocks/bin/luacov-coveralls -e /usr/local/share/lua -e ~/.luarocks -t $COVERALLS_REPO_TOKEN
   lint:
     <<: *defaults
     steps:
@@ -59,9 +73,15 @@ workflows:
           filters:
             tags:
               only: /(?:\d+.){2}\d/
-      - lint:
+      - report:
           requires:
             - test
+          filters:
+            tags:
+              only: /(?:\d+.){2}\d/
+      - lint:
+          requires:
+            - report
           filters:
             tags:
               only: /(?:\d+.){2}\d/
