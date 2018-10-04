@@ -65,7 +65,7 @@ workflows:
           filters:
             tags:
               only: /(?:\d+.){2}\d/
-     - release:
+      - release:
           requires:
             - test
           filters:
