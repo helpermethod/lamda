@@ -1,6 +1,6 @@
 # lamda
 
-![CircleCI branch](https://img.shields.io/circleci/project/gh/helpermethod/lamda/master.svg)
+[![CircleCI](https://circleci.com/gh/helpermethod/lamda.svg?style=svg)](https://circleci.com/gh/helpermethod/lamda)
 
 A functional programming library for Lua, inspired by [Ramda](https://ramdajs.com/).
 
