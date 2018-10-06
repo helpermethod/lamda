@@ -42,7 +42,7 @@ describe('lamda', function()
 
   describe('partial_right', function()
     it('TODO', function()
-      assert.is_equal(5, lamda.partial(add, 3)(2))
+      assert.is_equal(5, lamda.partial_right(add, 3)(2))
     end)
   end)
 
@@ -55,6 +55,7 @@ describe('lamda', function()
       assert.is_true(lamda.any_pass(is_string, is_number)(2))
     end)
   end)
+
   describe('sort', function()
     it('should return a copy of the list, sorted according to the comparator function', function()
       assert.is_same({1, 2, 3}, lamda.sort(function(a, b) return a < b end, {2, 1, 3}))
