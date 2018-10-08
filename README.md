@@ -32,7 +32,7 @@ join(',', {1, 2, 3}) -- returns '1,2,3'
 ### join(separator, tbl)
 
 ```lua
-join(',', {1, 2, 3}) -- returns '1,2,3'
+lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 ```
 
 ### concat(tbl1, tbl2)
