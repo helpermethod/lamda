@@ -10,7 +10,7 @@ describe('lamda', function()
       return a / b
     end
 
-    it('should flip the first two arguments of a function', function()
+    it('should return a new function with the order of the first two arguments reversed', function()
       assert.is_equal(div(2, 1), lamda.flip(div)(1, 2))
     end)
   end)

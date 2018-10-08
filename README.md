@@ -19,10 +19,25 @@ local lamda = require('lamda')
 
 ## API
 
-flip(fn)
-concat(tbl1, tbl2)
-pipe(fn, ...)
-partial(fn, ...)
-partial_right(fn, ...)
-any_pass(predicate, ...)
-sort(comparator, tbl)              
+### flip(fn)
+
+Returns a new function with the order of the first two arguments reversed.
+
+```lua
+local join = lamda.flip(table.concat)
+
+join(',', {1, 2, 3})
+--=> '1,2,3'
+```
+
+### concat(tbl1, tbl2)
+
+### pipe(fn, ...)
+
+### partial(fn, ...)
+
+### partial_right(fn, ...)
+
+### any_pass(predicate, ...)
+
+### sort(comparator, tbl)
