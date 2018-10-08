@@ -50,7 +50,7 @@ jobs:
           keys:
             - v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
             - v1-luarocks-test-dependencies
-      - run: ~/.luarocks/bin/luacheck src/ spec/
+      - run: ~/.luarocks/bin/luacheck lamda-dev-1.rockspec
   release:
     <<: *defaults
     steps:
