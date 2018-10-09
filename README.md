@@ -26,8 +26,13 @@ Returns a new function with the order of the first two arguments reversed.
 ```lua
 local join = lamda.flip(table.concat)
 
-join(',', {1, 2, 3})
---=> '1,2,3'
+join(',', {1, 2, 3}) -- returns '1,2,3'
+```
+
+### join(separator, tbl)
+
+```lua
+lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 ```
 
 ### concat(tbl1, tbl2)
