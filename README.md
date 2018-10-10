@@ -39,6 +39,21 @@ lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 
 ### pipe(fn, ...)
 
+Returns a new function by composing the passed in functions from left to right. The first function can have any arity, while the remaining functions must be unary.
+
+``lua
+local function add(a, b)
+  return a + b
+end
+
+local function square(n)
+  return n * n
+end
+
+local add_and_square = lamda.pipe(add, square)
+add_and_square(2, 3) -- returns 25
+```
+
 ### partial(fn, ...)
 
 ### partial_right(fn, ...)
