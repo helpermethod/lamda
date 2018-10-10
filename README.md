@@ -51,6 +51,7 @@ local function square(n)
 end
 
 local add_and_square = lamda.pipe(add, square)
+
 add_and_square(2, 3) -- returns 25
 ```
 
