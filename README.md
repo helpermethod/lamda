@@ -41,7 +41,7 @@ lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 
 Returns a new function by composing the passed in functions from left to right. The first function can have any arity, while the remaining functions must be unary.
 
-``lua
+```lua
 local function add(a, b)
   return a + b
 end
