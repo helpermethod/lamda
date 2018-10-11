@@ -15,6 +15,10 @@ $ luarocks install lamda
 
 ```lua
 local lamda = require('lamda')
+
+local shout = lamda.pipe(string.upper, function(s) return s .. '!' end)
+
+shout('lamda rocks') -- returns 'LAMDA ROCKS!'
 ```
 
 ## API
