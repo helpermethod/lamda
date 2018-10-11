@@ -25,7 +25,7 @@ shout('lamda rocks') -- returns 'LAMDA ROCKS!'
 
 ### flip(fn)
 
-Returns a new function with the order of the first two arguments reversed.
+Creates a new function with the order of the first two arguments reversed.
 
 ```lua
 local join = lamda.flip(table.concat)
@@ -35,15 +35,25 @@ join(',', {1, 2, 3}) -- returns '1,2,3'
 
 ### join(separator, tbl)
 
+Creates a new string by concatenating all elemements and putting a separator in between.
+
 ```lua
 lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 ```
 
-### concat(tbl1, tbl2)
+### concat(first_table, second_table)
+
+Creates a new list by concatenating the given lists.
+
+:warning: `concat` creates shallow copies.
+
+```lua
+lamda.concat({1, 2, 3}, {4, 5, 6}) -- returns {1, 2, 3, 4, 5, 6}
+```
 
 ### pipe(fn, ...)
 
-Returns a new function by composing the passed in functions from left to right. The first function can have any arity, while the remaining functions must be unary.
+Creates a new function by composing the given functions from left to right. The first function can have any arity, while the remaining functions must be unary.
 
 ```lua
 local function add(a, b)
