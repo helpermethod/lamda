@@ -43,7 +43,7 @@ lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 
 ### concat(first_table, second_table)
 
-Creates a new list by concatenating the given lists.
+Creates a new list by concatenating the given arrays.
 
 ```lua
 lamda.concat({1, 2, 3}, {4, 5, 6}) -- returns {1, 2, 3, 4, 5, 6}
@@ -51,7 +51,7 @@ lamda.concat({1, 2, 3}, {4, 5, 6}) -- returns {1, 2, 3, 4, 5, 6}
 
 ### pipe(fn, ...)
 
-Creates a new function by composing the given functions from left to right. The first function can have any arity, while the remaining functions must be unary.
+Creates a new function by composing the given functions from left to right. The first function may have any arity while the remaining functions must be unary.
 
 ```lua
 local function add(a, b)
@@ -74,3 +74,10 @@ add_and_square(2, 3) -- returns 25
 ### any_pass(predicate, ...)
 
 ### sort(comparator, tbl)
+
+Creates a new array by sorting the given array according to a comparator function. The comparator function receives two arguments and must return `true` if the first argument should come first in the sorted array.
+
+```lua
+local numbers = {2, 1, 3}
+lamda.sort(function(a, b) return a < b end, numbers) -- returns {1, 2, 3}
+```
