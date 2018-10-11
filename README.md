@@ -79,5 +79,6 @@ Creates a new array by sorting the given array according to a comparator functio
 
 ```lua
 local numbers = {2, 1, 3}
+
 lamda.sort(function(a, b) return a < b end, numbers) -- returns {1, 2, 3}
 ```
