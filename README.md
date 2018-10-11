@@ -45,8 +45,6 @@ lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 
 Creates a new list by concatenating the given lists.
 
-:warning: `concat` creates shallow copies.
-
 ```lua
 lamda.concat({1, 2, 3}, {4, 5, 6}) -- returns {1, 2, 3, 4, 5, 6}
 ```
