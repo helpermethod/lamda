@@ -8,10 +8,10 @@ end
 
 lamda.join = lamda.flip(table.concat)
 
-function lamda.concat(tbl1, tbl2)
-  local copy = {table.unpack(tbl1)}
+function lamda.concat(first_table, second_table)
+  local copy = {table.unpack(first_table)}
 
-  for _, v in ipairs(tbl2) do
+  for _, v in ipairs(second_table) do
     table.insert(copy, v)
   end
 
