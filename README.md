@@ -59,7 +59,7 @@ local function add(a, b)
 end
 
 local function square(n)
-  return n * n
+  return n ^ 2
 end
 
 local add_and_square = lamda.pipe(add, square)
