@@ -43,7 +43,7 @@ lamda.join(',', {1, 2, 3}) -- returns '1,2,3'
 
 ### concat(first_table, second_table)
 
-Creates a new list by concatenating the given arrays.
+Creates a new array by concatenating the given arrays.
 
 ```lua
 lamda.concat({1, 2, 3}, {4, 5, 6}) -- returns {1, 2, 3, 4, 5, 6}
