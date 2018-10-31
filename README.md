@@ -69,6 +69,16 @@ add_and_square(2, 3) -- returns 25
 
 ### partial(fn, ...)
 
+Takes a function `f` and a variable number of arguments and creates a new function `g`. When applied, `g` returns the result of applying `f` to theinitially provided arguments followed by the arguments to `g`.
+
+```lua
+local function prepend(first_string, second_string)
+  return
+end
+
+local add_two = lamda.partial(add, 2)
+```
+
 ### partial_right(fn, ...)
 
 ### any_pass(predicate, ...)

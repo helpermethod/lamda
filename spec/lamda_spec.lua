@@ -5,6 +5,22 @@ describe('lamda', function()
     return a + b
   end
 
+  describe('split', function()
+    for i, pair in ipairs({
+      {{':', 'a:b:c'}, {'a', 'b', 'c'}},
+      {{':', ':abc'}, {'abc'}},
+      {{':', 'abc:'}, {'abc'}},
+      {{'%s', 'a b c'}, {'a', 'b', 'c'}},
+      {{'', 'abc'}, {'a', 'b', 'c'}}
+    }) do
+      local passed_in, expected = table.unpack(pair)
+
+      it('should split the string into an array of strings' .. '[' .. i .. ']', function()
+        assert.is_same(expected, lamda.split(table.unpack(passed_in)))
+      end)  
+    end
+	end)
+
   describe('flip', function()
     local function div(a, b)
       return a / b

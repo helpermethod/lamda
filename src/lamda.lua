@@ -6,6 +6,27 @@ function lamda.flip(fn)
   end
 end
 
+function lamda.append(elem, tbl)
+  local copy = {table.unpack(tbl)}
+
+  table.insert(copy, elem)
+
+  return copy
+end
+
+function lamda.split(pattern, str)
+  function split(pattern, acc, str)
+    if str == '' then return acc end
+    if pattern == '' then return split(pattern, lamda.append(str:sub(1, 1), acc), str:sub(2)) end
+
+    local from, to = str:find(pattern)
+
+    return not from and lamda.append(str, acc) or split(pattern, from == 1 and acc or lamda.append(str:sub(1, from - 1), acc), str:sub(to + 1))
+  end
+
+  return split(pattern, {}, str)
+end
+
 lamda.join = lamda.flip(table.concat)
 
 function lamda.concat(first_table, second_table)

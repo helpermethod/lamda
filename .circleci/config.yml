@@ -40,7 +40,7 @@ jobs:
           keys:
             - v1-luarocks-test-dependencies{{ checksum "lamda-dev-1.rockspec" }}
             - v1-luarocks-test-dependencies
-      - run: ~/.luarocks/bin/luacov-coveralls -e /usr/local/share/lua -e ~/.luarocks -t $COVERALLS_REPO_TOKEN
+      - run: ~/.luarocks/bin/luacov-coveralls -t $COVERALLS_REPO_TOKEN
   lint:
     <<: *defaults
     steps:
