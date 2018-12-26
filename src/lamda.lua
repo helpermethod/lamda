@@ -14,36 +14,42 @@ function lamda.append(elem, tbl)
   return copy
 end
 
+function lamda.reduce(fn, acc, tbl)
+  return #tbl == 0 and acc or lamda.reduce(fn, fn(acc, tbl[1]), {table.unpack(tbl, 2)})
+end
+
+function lamda.map(fn, tbl)
+  return lamda.reduce(function(acc, value) return lamda.append(fn(value), acc) end, {}, tbl)
+end
+
+function lamda.filter(predicate, tbl)
+  return lamda.reduce(function(acc, value) return predicate(value) and lamda.append(fn(value), acc) or acc end, {}, tbl)
+end
+
+local function split(pattern, acc, str)
+  if str == '' then return acc end
+  if pattern == '' then return split(pattern, lamda.append(str:sub(1, 1), acc), str:sub(2)) end
+
+  local from, to = str:find(pattern)
+
+  return not from and lamda.append(str, acc) or split(pattern, from == 1 and acc or lamda.append(str:sub(1, from - 1), acc), str:sub(to + 1))
+end
+
 function lamda.split(pattern, str)
-  function split(pattern, acc, str)
-    if str == '' then return acc end
-    if pattern == '' then return split(pattern, lamda.append(str:sub(1, 1), acc), str:sub(2)) end
-
-    local from, to = str:find(pattern)
-
-    return not from and lamda.append(str, acc) or split(pattern, from == 1 and acc or lamda.append(str:sub(1, from - 1), acc), str:sub(to + 1))
-  end
-
   return split(pattern, {}, str)
 end
 
 lamda.join = lamda.flip(table.concat)
 
 function lamda.concat(first_table, second_table)
-  local copy = {table.unpack(first_table)}
-
-  for _, v in ipairs(second_table) do
-    table.insert(copy, v)
-  end
-
-  return copy
+  return lamda.reduce(lamda.flip(lamda.append), first_table, second_table)
 end
 
 function lamda.pipe(fn, ...)
   local fns = {...}
 
   return function(...)
-    return #fns == 0 and fn(...) or lamda.pipe(table.unpack(fns))(fn(...))
+    return lamda.reduce(function(acc, value) return value(acc) end, fn(...), fns)
   end
 end
 

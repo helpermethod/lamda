@@ -19,7 +19,19 @@ describe('lamda', function()
         assert.is_same(expected, lamda.split(table.unpack(passed_in)))
       end)  
     end
-	end)
+  end)
+
+  describe('reduce', function()
+    it('should reduce an array of elements to a single value', function()
+      assert.is_equal(6, lamda.reduce(function(acc, value) return acc + value end, 0, {1, 2, 3}))
+    end)
+  end)
+
+  describe('map', function()
+    it('should return a new array with the result of applying the function to all elements of the original array', function()
+      assert.is_same({1, 4, 9}, lamda.map(function(x) return x ^ 2 end, {1, 2, 3}))
+    end)
+  end)
 
   describe('flip', function()
     local function div(a, b)
